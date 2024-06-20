@@ -1,20 +1,36 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-title> Blank </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content class="ion-padding" [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">Blank</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <div>
+    <ion-checkbox (ionChange)="errorChanged()" [(ngModel)]="isError"> tis wrong, yo!</ion-checkbox>
+  </div>
+
+  <div>&nbsp;</div>
+
+  <div>
+    <ion-checkbox #ionicCB aria-errormessage="errorMessageId" id="ionicCB"> Ionic Checkbox </ion-checkbox>
+    <div>
+      <ion-note color="danger" id="errorMessageId">
+        <span>Ionic Checkbox is in error</span>
+      </ion-note>
+    </div>
+  </div>
+
+  <div>&nbsp;</div>
+
+  <div>
+    <input #plainCB type="checkbox" aria-errormessage="plainErrorMsgId" id="plainCB" />
+    <label for="plainCB">Plain Checkbox</label>
+    <div id="plainErrorMsgId">I am a plain CB error</div>
   </div>
 </ion-content>
