@@ -1,0 +1,7 @@
+{
+  "name": "test-checkbox-error",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
