@@ -11,17 +11,21 @@
     </ion-toolbar>
   </ion-header>
 
-  <div>
-    <ion-checkbox (ionChange)="errorChanged()" [(ngModel)]="isError"> tis wrong, yo!</ion-checkbox>
-  </div>
-
   <div>&nbsp;</div>
 
   <div>
-    <ion-checkbox #ionicCB aria-errormessage="errorMessageId" id="ionicCB"> Ionic Checkbox </ion-checkbox>
-    <div>
-      <ion-note color="danger" id="errorMessageId">
-        <span>Ionic Checkbox is in error</span>
+    <ion-checkbox
+      #ionicCB
+      aria-errormessage="errorMessageId"
+      id="ionicCB"
+      [(ngModel)]="ionicIsChecked"
+      (ionChange)="ionicCbChanged()"
+    >
+      Ionic Checkbox
+    </ion-checkbox>
+    <div role="region" aria-live="polite">
+      <ion-note #ionicCBError class="hiddenmessage" color="danger" id="errorMessageId">
+        <span>The Ionic Checkbox cannot be checked at this time</span>
       </ion-note>
     </div>
   </div>
@@ -29,8 +33,17 @@
   <div>&nbsp;</div>
 
   <div>
-    <input #plainCB type="checkbox" aria-errormessage="plainErrorMsgId" id="plainCB" />
+    <input
+      #plainCB
+      type="checkbox"
+      aria-errormessage="plainErrorMsgId"
+      id="plainCB"
+      [(ngModel)]="htmlIsChecked"
+      (change)="htmlCbChanged()"
+    />
     <label for="plainCB">Plain Checkbox</label>
-    <div id="plainErrorMsgId">I am a plain CB error</div>
+    <div role="region" aria-live="polite" #plainCBError class="hiddenmessage" id="plainErrorMsgId">
+      The Plain HTML Checkbox cannot be checked at this time
+    </div>
   </div>
 </ion-content>

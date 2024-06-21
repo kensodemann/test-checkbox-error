@@ -12,14 +12,30 @@ import { IonHeader, IonToolbar, IonTitle, IonContent, IonCheckbox, IonNote } fro
 export class HomePage {
   @ViewChild('plainCB') plainCB!: ElementRef;
   @ViewChild('ionicCB') ionicCB!: any;
+  @ViewChild('plainCBError') plainCBError!: ElementRef;
+  @ViewChild('ionicCBError') ionicCBError!: any;
 
-  isError: Boolean = false;
+  ionicIsChecked: Boolean = false;
+  htmlIsChecked: Boolean = false;
 
   constructor() {}
 
-  errorChanged() {
-    this.plainCB.nativeElement.setAttribute('aria-invalid', this.isError);
-    const input = this.ionicCB.elementRef.nativeElement.shadowRoot?.querySelector("input[type='checkbox']");
-    input.setAttribute('aria-invalid', this.isError);
+  ionicCbChanged() {
+    const input = this.ionicCB.el.shadowRoot?.querySelector("input[type='checkbox']");
+    input.setAttribute('aria-invalid', this.ionicIsChecked);
+    if (this.ionicIsChecked) {
+      this.ionicCBError.el.classList.remove('hiddenmessage');
+    } else {
+      this.ionicCBError.el.classList.add('hiddenmessage');
+    }
+  }
+
+  htmlCbChanged() {
+    this.plainCB.nativeElement.setAttribute('aria-invalid', this.htmlIsChecked);
+    if (this.htmlIsChecked) {
+      this.plainCBError.nativeElement.classList.remove('hiddenmessage');
+    } else {
+      this.plainCBError.nativeElement.classList.add('hiddenmessage');
+    }
   }
 }
